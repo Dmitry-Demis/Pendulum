@@ -96,6 +96,18 @@ namespace Rope.ViewModel
 
         }
 
+
+        /// <summary>Значение результата</summary>
+
+        private double _Result;
+        public double Result
+        {
+            get => _Result;
+            set => SetProperty(ref _Result, value);
+
+        }
+
+
         private double _actualWidth;
         public double ActWidth
         {
@@ -154,8 +166,8 @@ namespace Rope.ViewModel
                         sep = true;
                         sw.WriteLine($"X = ;{XCurrent:f6}; U = ;{UCurrent:f6};");
                         tb += tau;
-                        /*Result = XCurrent;
-                        Width = 200 + Result;*/
+                        Result = XCurrent;
+                        /*Width = 200 + Result;*/
                     }
                 }
                 dialogService.ShowMessageBoxDialog("Success");
