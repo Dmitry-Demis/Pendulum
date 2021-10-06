@@ -35,8 +35,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="OxyPlot, Version=2.0.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Core.2.0.0\lib\net45\OxyPlot.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.Wpf, Version=2.0.0.0, Culture=neutral, PublicKeyToken=75e952ba404cdbb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Wpf.2.0.0\lib\net45\OxyPlot.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Printing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,6 +72,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\LW1_PendulumWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LW2_PendulumWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -86,7 +102,15 @@
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\JsonFileService.cs" />
     <Compile Include="ViewModel\BaseViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\LW1_PendulumViewModel.cs" />
+    <Compile Include="ViewModel\LW2_PendulumViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="View\LW1_PendulumWindow.xaml.cs">
+      <DependentUpon>LW1_PendulumWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LW2_PendulumWindow.xaml.cs">
+      <DependentUpon>LW2_PendulumWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -110,6 +134,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -119,15 +144,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\a^2.PNG" />
-    <Resource Include="Images\b^2.PNG" />
-    <Resource Include="Images\m.PNG" />
-    <Resource Include="Images\n.PNG" />
-    <Resource Include="Images\u.PNG" />
-    <Resource Include="Images\x.PNG" />
+    <Resource Include="GFHF.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Draw.PNG" />
+    <Folder Include="Images\WhiteText\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\WhiteTextImages\LW2\LW2_Formula.gif" />
+    <Resource Include="Images\WhiteTextImages\LW2\m.gif" />
+    <Resource Include="Images\WhiteTextImages\LW2\n.gif" />
+    <Resource Include="Images\WhiteTextImages\LW2\u.gif" />
+    <Resource Include="Images\WhiteTextImages\LW2\x.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

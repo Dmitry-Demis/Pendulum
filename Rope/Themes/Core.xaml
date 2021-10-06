@@ -6,7 +6,14 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Brushes.xaml" />
     </ResourceDictionary.MergedDictionaries>
-
+    <Style x:Key="WindowStyle"
+        TargetType="{x:Type Window}">
+        <Setter Property="Background" Value="#303030"/>
+        <Setter Property="ResizeMode" Value="NoResize"/>
+        <Setter Property="WindowState" Value="Maximized"/>
+    </Style>
+   
+    
     <Style TargetType="{x:Type TextBlock}">
         <Setter Property="Foreground" Value="{StaticResource ControlForeground}"/>
         <Setter Property="FontSize" Value="24"/>

@@ -21,7 +21,9 @@ namespace Rope
         protected override void OnStartup(StartupEventArgs e)
         {
             IDialogService dialogService = new DialogService(MainWindow);
-            IFileService fileService = new JsonFileService();           
+            IFileService fileService = new JsonFileService();
+            dialogService.Register<LW1_PendulumViewModel, LW1_PendulumWindow>();
+            dialogService.Register<LW2_PendulumViewModel, LW2_PendulumWindow>();
             var viewModel = new MainWindowViewModel(dialogService, fileService);
             var view = new MainWindow { DataContext = viewModel };
             view.ShowDialog();
