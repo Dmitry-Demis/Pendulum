@@ -4,16 +4,27 @@ using Rope.Interfaces;
 using Rope.Model;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
+using Rope.View;
 
 namespace Rope.ViewModel
 {
-    class LW1_PendulumViewModel: BaseViewModel, ICloseWindows
+    class LW1_PendulumViewModel : BaseViewModel, ICloseWindows
     {
+
+        public LW1_PendulumViewModel(IDialogService dialogService = null, IFileService fileService = null)
+        {
+            this.dialogService = dialogService;
+            this.fileService = fileService;
+        }
+
+
         private double _n = 3;
 
         public double N
@@ -78,7 +89,7 @@ namespace Rope.ViewModel
             get { return _result; }
             set { SetProperty(ref _result, value); }
         }
-        private double _width = 200;
+        private double _width;
 
         public double Width
         {
@@ -126,14 +137,12 @@ namespace Rope.ViewModel
         }
         void Method()
         {
-            //SaveFileDialog saveFileDialog1 = new SaveFileDialog()
-            //{
-            //    FileName = "result.csv",
-            //};
+            
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "Comma-Separated Values|*.csv";
             saveFileDialog1.Title = "Сохраняем csv файл";
-            saveFileDialog1.ShowDialog();
+            saveFileDialog1.FileName = "result.csv";
+       
             if (saveFileDialog1.FileName != string.Empty)
             {
                 using (var sw = new StreamWriter(saveFileDialog1.FileName))
@@ -158,13 +167,12 @@ namespace Rope.ViewModel
                         sw.WriteLine($"X = ;{XCurrent:f6}; U = ;{UCurrent:f6};");
                         tb += tau;
                         Result = XCurrent;
-                        Width = 200 + Result;
+                        Width = 5*Result;
                     }
                 }
-                dialogService.ShowMessageBoxDialog("Success");
+                dialogService.ShowMessageBoxDialog("Data in the file");
             }
-
-
+           
         }
         /// <summary>
         /// A save method for the SaveFileDialogCommand

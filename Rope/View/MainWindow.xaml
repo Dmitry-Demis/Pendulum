@@ -5,12 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rope"
         mc:Ignorable="d"
-        Title="Маятник" Height="450" Width="800"
+        Title="Маятник" 
         xmlns:model="clr-namespace:Rope.Model"
         xmlns:wnd ="clr-namespace:Rope.View"
         model:WindowCloser.EnableWindowClosing="True"
         xmlns:enumcmb="clr-namespace:Rope.BindingEnums"
-        ResizeMode="NoResize"
         Style="{DynamicResource ResourceKey=WindowStyle}">
 
     <Grid>
@@ -19,7 +18,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical" Grid.Column="0">
-            <Button Content="ЛР1. Маятник"/>
+            <Button Content="ЛР1. Маятник" Command="{Binding LW1_PendulumCommand}"/>
             <Button Content="ЛР2. Маятник" Command="{Binding LW2_PendulumCommand}"/>
         </StackPanel>
     </Grid>

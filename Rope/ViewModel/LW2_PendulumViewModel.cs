@@ -17,6 +17,87 @@ namespace Rope.ViewModel
 {
     class LW2_PendulumViewModel : BaseViewModel, ICloseWindows
     {
+        private Random random = new Random();
+        private double _c1 = 7;
+
+        public double C1
+        {
+            get => _c1;
+            set => SetProperty(ref _c1, value);
+        }
+        private double _c2 = 7;
+
+        public double C2
+        {
+            get => _c2;
+            set => SetProperty(ref _c2, value);
+        }
+        private double _c3 = 7;
+
+        public double C3
+        {
+            get => _c3;
+            set => SetProperty(ref _c3, value);
+        }
+        private double _m1 = 3;
+
+        public double M1
+        {
+            get => _m1;
+            set => SetProperty(ref _m1, value);
+        }
+        private double _m2 = 2;
+
+        public double M2
+        {
+            get => _m2;
+            set => SetProperty(ref _m2, value);
+        }
+
+        private double _M3 = 1;
+        public double M3
+        {
+            get => _M3;
+            set => SetProperty(ref _M3, value);
+        }
+        private double _x1;
+        public double X1
+        {
+            get => _x1;
+            set => SetProperty(ref _x1, value);
+        }
+        private double _u1;
+        public double U1
+        {
+            get => _u1;
+            set => SetProperty(ref _u1, value);
+        }
+        private double _x2;
+        public double X2
+        {
+            get => _x2;
+            set => SetProperty(ref _x2, value);
+        }
+        private double _u2;
+        public double U2
+        {
+            get => _u2;
+            set => SetProperty(ref _u2, value);
+        }
+        private double _x3;
+        public double X3
+        {
+            get => _x3;
+            set => SetProperty(ref _x3, value);
+        }
+        private double _u3;
+        public double U3
+        {
+            get => _u3;
+            set => SetProperty(ref _u3, value);
+        }
+
+
         public event Action Closed;
 
         public void Close()
@@ -30,92 +111,112 @@ namespace Rope.ViewModel
         {
             this.dialogService = dialogService;
             this.fileService = fileService;
-            
-          
+            X1 =  40;
+            X2 = 2*X1;
+            X3 = 3*X1;
+            U1 = 15;
+            U2 = U3 = 5;
+            Width1 = X1;
+            Width2 = X2;
+            Width3 = X3;
+            M1 = 15;
+            M2 = 5;
+            M1 = 3;
         }
 
+        private double _xCurrent1;
 
-        /// <summary>Значение X_0</summary>
-
-        private double _X = 0;
-        public double X
+        public double XCurrent1
         {
-            get => _X;
-            set => SetProperty(ref _X, value);
+            get { return _xCurrent1; }
+            set { SetProperty(ref _xCurrent1, value); }
         }
+        private double _uCurrent1;
 
-        /// <summary>Значение M</summary>
-
-        private double _M;
-        public double M
+        public double UCurrent1
         {
-            get => _M;
-            set => SetProperty(ref _M, value);
-
+            get { return _uCurrent1; }
+            set { SetProperty(ref _uCurrent1, value); }
         }
 
+        private double _result1 = 0;
 
-        /// <summary>Значение N</summary>
-
-        private double _N;
-        public double N
+        public double Result1
         {
-            get => _N;
-            set => SetProperty(ref _N, value);
-
+            get { return _result1; }
+            set { SetProperty(ref _result1, value); }
         }
+        private double _width1;
 
-        /// <summary>Значение U</summary>
-
-        private double _U;
-        public double U
+        public double Width1
         {
-            get => _U;
-            set => SetProperty(ref _U, value);
-
+            get { return _width1; }
+            set { SetProperty(ref _width1, value); }
         }
 
-        /// <summary>X current</summary>
 
-        private double _XCurrent;
-        public double XCurrent
+
+        private double _xCurrent2;
+
+        public double XCurrent2
         {
-            get => _XCurrent;
-            set => SetProperty(ref _XCurrent, value);
-
+            get { return _xCurrent2; }
+            set { SetProperty(ref _xCurrent2, value); }
         }
+        private double _uCurrent2;
 
-
-        /// <summary>U current</summary>
-
-        private double _UCurrent;
-        public double UCurrent
+        public double UCurrent2
         {
-            get => _UCurrent;
-            set => SetProperty(ref _UCurrent, value);
-
+            get { return _uCurrent2; }
+            set { SetProperty(ref _uCurrent2, value); }
         }
 
+        private double _result2 = 0;
 
-        /// <summary>Значение результата</summary>
-
-        private double _Result;
-        public double Result
+        public double Result2
         {
-            get => _Result;
-            set => SetProperty(ref _Result, value);
-
+            get { return _result2; }
+            set { SetProperty(ref _result2, value); }
         }
+        private double _width2;
 
-
-        private double _actualWidth;
-        public double ActWidth
+        public double Width2
         {
-            get { return _actualWidth; }
-            set { SetProperty(ref _actualWidth, value); }
+            get { return _width2; }
+            set { SetProperty(ref _width2, value); }
         }
 
-       
+
+        private double _xCurrent3;
+
+        public double XCurrent3
+        {
+            get { return _xCurrent3; }
+            set { SetProperty(ref _xCurrent3, value); }
+        }
+        private double _uCurrent3;
+
+        public double UCurrent3
+        {
+            get { return _uCurrent3; }
+            set { SetProperty(ref _uCurrent3, value); }
+        }
+
+        private double _result3 = 0;
+
+        public double Result3
+        {
+            get { return _result3; }
+            set { SetProperty(ref _result3, value); }
+        }
+        private double _width3;
+
+        public double Width3
+        {
+            get { return _width3; }
+            set { SetProperty(ref _width3, value); }
+        }
+
         private RelayCommand _solution;
         public RelayCommand Solution
         {
@@ -123,8 +224,9 @@ namespace Rope.ViewModel
             {
                 return _solution ?? (_solution = new RelayCommand(() =>
                 {
+                    MethodAsync();
 
-                  
+
                 }));
             }
         }
@@ -133,6 +235,7 @@ namespace Rope.ViewModel
         {
             await Task.Run(() => Method());
         }
+
         void Method()
         {
             //SaveFileDialog saveFileDialog1 = new SaveFileDialog()
@@ -142,37 +245,63 @@ namespace Rope.ViewModel
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "Comma-Separated Values|*.csv";
             saveFileDialog1.Title = "Сохраняем csv файл";
-            saveFileDialog1.ShowDialog();
-            if (saveFileDialog1.FileName != string.Empty)
+            saveFileDialog1.FileName = "result.csv";
+
+
+            if (true)
             {
-                using (var sw = new StreamWriter(saveFileDialog1.FileName))
+                //using (var sw = new StreamWriter(saveFileDialog1.FileName))
                 {
-                    XCurrent = X;
-                    UCurrent = U;
-                    sw.WriteLine($"X = ;{XCurrent:f3}; U = ;{UCurrent:f3};");
+                    XCurrent1 = X1;
+                    UCurrent1 = U1;
+                    XCurrent2 = X2;
+                    UCurrent2 = U2;
+                    XCurrent3 = X3;
+                    UCurrent3 = U3;
+                    // sw.WriteLine($"X = ;{XCurrent:f3}; U = ;{UCurrent:f3};");
                     double tau = 1e-5;
-                    double tb = 0.0, te = 10.0;
+                    double tb = 0.0, te = 20.0;
                     bool sep = false;
+                    double L = 80;
 
                     while (te > tb)
                     {
-
-                        UCurrent += tau * (1.0/Math.Pow((1+XCurrent), N) - 1.0 / Math.Pow((1 - XCurrent), N))*1.0/M;
-                        XCurrent += tau * UCurrent;
-                        if (sep)
+                        double[] Uxk = { UCurrent1, UCurrent2, UCurrent3 };
+                        double[] Xk = { XCurrent1, XCurrent2, XCurrent3 };
+                        UCurrent1 = UCurrent1 + tau * (-C1 * (L - (Xk[1] - Xk[0])))*1/M1;
+                        XCurrent1 = XCurrent1 + tau * Uxk[0];
+                        UCurrent2 = UCurrent2 + tau * (C1 * (L - (Xk[1] - Xk[0])) - C2 * (L - (Xk[2] - Xk[1]))) * 1 / M2;
+                        XCurrent2 = XCurrent2 + tau * Uxk[1];
+                        UCurrent3 = UCurrent3 + tau * (C2 * (L - (Xk[2] - Xk[1]))) * 1 / M3;
+                        XCurrent3 = XCurrent3 + tau * Uxk[2];
+                        Uxk[0] = UCurrent1;
+                        Uxk[1] = UCurrent2;
+                        Uxk[2] = UCurrent3;
+                        Xk[0] = XCurrent1;
+                        Xk[1] = XCurrent2;
+                        Xk[2] = XCurrent3;
+                        int K = 135;
+                        if ((Xk[1] - Xk[0]) > K)
                         {
-                            //sw.Write(";");
+                            C1 = 0;
                         }
-                        sep = true;
-                        sw.WriteLine($"X = ;{XCurrent:f6}; U = ;{UCurrent:f6};");
+
+                        if (Xk[2] - Xk[1] > K)
+                        {
+                            C2 = 0;
+                        }
                         tb += tau;
-                        Result = XCurrent;
-                        /*Width = 200 + Result;*/
+                        Result1 = 2*XCurrent1;
+                        Width1 = Result1;
+                        Result3 = 2*XCurrent3;
+                        Width3 = Result3;
+                        Result2 =2*XCurrent2;
+                        Width2 =  Result2;
                     }
                 }
-                dialogService.ShowMessageBoxDialog("Success");
-            }
 
+               // dialogService.ShowMessageBoxDialog("Data in the file");
+            }
 
         }
     }

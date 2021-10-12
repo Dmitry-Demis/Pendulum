@@ -6,21 +6,22 @@
         xmlns:local="clr-namespace:Rope.View"
         xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d"
-        Title="ЛР2. Маятник" Height="450" Width="800"
-        Style="{DynamicResource ResourceKey=WindowStyle}">
+        Title="ЛР2. Маятник"
+        Style="{DynamicResource ResourceKey=WindowStyle}"
+        >
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid HorizontalAlignment="Left" Grid.Column="0">
+        <Grid HorizontalAlignment="Left" Grid.Column="0" Width="300">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -31,28 +32,49 @@
                 <RowDefinition/>
 
             </Grid.RowDefinitions>
-            <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding M}" Height="auto"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding N}" Height="auto"/>
-            <TextBox Grid.Row="2" Grid.Column="1" Margin="5" Text="{Binding X}" Height="auto"/>
-            <TextBox Grid.Row="3" Grid.Column="1" Margin="5" Text="{Binding U}" Height="auto"/>
-            <Image Source="/Images/WhiteTextImages/LW2/m.gif" Grid.Column="0" Grid.Row="0" Margin="5"/>
-            <Image Source="/Images/WhiteTextImages/LW2/n.gif" Grid.Column="0" Grid.Row="1" Margin="5"/>
-            <Image Source="/Images/WhiteTextImages/LW2/x.gif" Grid.Column="0" Grid.Row="2" Margin="5"/>
-            <Image Source="/Images/WhiteTextImages/LW2/u.gif" Grid.Column="0" Grid.Row="3" Margin="5"/>
-            <Image Source="/Images/WhiteTextImages/LW2/LW2_Formula.gif" Grid.Column="0" Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+            <TextBlock Text="C" Grid.Column="0" Grid.Row="0"/>
+            <TextBox Grid.Column="1" Grid.Row="0"/>
+            <TextBlock Text="m1" Grid.Column="0" Grid.Row="1"/>
+            <TextBox Grid.Column="1" Grid.Row="1"/>
+            <TextBlock Text="m2" Grid.Column="0" Grid.Row="2"/>
+            <TextBox Grid.Column="1" Grid.Row="2"/>
+            <TextBlock Text="m3" Grid.Column="0" Grid.Row="3"/>
+            <TextBox Grid.Column="1" Grid.Row="3"/>
 
         </Grid>
         <!--<Grid x:Name="myBorder" Grid.Column="1">-->
-        <Canvas Grid.Column="1" x:Name="myCanvas" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Grid DataContext="{Binding ElementName=myCanvas}"
-                    Width="{Binding ActualWidth, Mode=OneWay}"
-                    Height="{Binding ActualHeight}" >
-                <Line X1="0" Y1="0" X2="1" Y2="0" Stretch="Fill" Stroke="Silver" StrokeThickness="2" StrokeDashArray="5, 3" Grid.Column="1"/>
-                                
-            </Grid>
+        <Canvas
+            Grid.Column="1" x:Name="myCanvas"  VerticalAlignment="Center">
             <Ellipse
-                Width="50" Height="{Binding Width, RelativeSource={RelativeSource Mode=Self}}" Fill="Red" Grid.Column="1"
-            />
+                Width="40" 
+                Height="{Binding Width, RelativeSource={RelativeSource Mode=Self}}" 
+                Fill="Red"
+                Canvas.Left="{Binding Width1, UpdateSourceTrigger=PropertyChanged}"
+                >
+                <Ellipse.RenderTransform>
+                    <TranslateTransform X="-20" Y="-20" />
+                </Ellipse.RenderTransform>
+            </Ellipse>
+            <Ellipse
+                Width="30" 
+                Height="{Binding Width, RelativeSource={RelativeSource Mode=Self}}" 
+                Fill="Red"
+                Canvas.Left="{Binding Width2, UpdateSourceTrigger=PropertyChanged}"
+            >
+                <Ellipse.RenderTransform>
+                    <TranslateTransform X="-15" Y="-15" />
+                </Ellipse.RenderTransform>
+            </Ellipse>
+            <Ellipse
+                Width="20" 
+                Height="{Binding Width, RelativeSource={RelativeSource Mode=Self}}" 
+                Fill="Red"
+                Canvas.Left="{Binding Width3, UpdateSourceTrigger=PropertyChanged}"
+            >
+                <Ellipse.RenderTransform>
+                    <TranslateTransform X="-10" Y="-10" />
+                </Ellipse.RenderTransform>
+            </Ellipse>
         </Canvas>
         <Button Command="{Binding Solution}"
                 Grid.Column="0" Grid.Row="1"  Content="Рассчитать"/>
@@ -61,8 +83,20 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Result" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <TextBox Margin="5" Text="{Binding Result}" Grid.Column="1"/>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Result1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Result1}"/>
+            <TextBlock Grid.Row="1" 
+                       Text="Result2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Result2}"/>
+            <TextBlock Grid.Row="2" 
+                Text="Result3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Result3}"/>
+            <!--<TextBox Margin="5" Text="{Binding Result}" Grid.Column="1"/>-->
         </Grid>
 
 

@@ -11,13 +11,17 @@
         <Setter Property="Background" Value="#303030"/>
         <Setter Property="ResizeMode" Value="NoResize"/>
         <Setter Property="WindowState" Value="Maximized"/>
+        <!--<Setter Property="MaxWidth" Value="1920"/>
+        <Setter Property="MaxHeight" Value="700"/>-->
     </Style>
    
     
     <Style TargetType="{x:Type TextBlock}">
         <Setter Property="Foreground" Value="{StaticResource ControlForeground}"/>
-        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontSize" Value="40"/>
         <Setter Property="FontFamily" Value="Times New Roman"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
     <!-- Button -->
     <Style TargetType="{x:Type Button}">

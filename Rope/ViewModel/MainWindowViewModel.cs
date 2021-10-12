@@ -93,6 +93,22 @@ namespace Rope.ViewModel
             }
 
         }
+
+        private RelayCommand _LW1_PendulumCommand;
+        public RelayCommand LW1_PendulumCommand
+        {
+            get
+            {
+                return _LW1_PendulumCommand ??
+                       (_LW1_PendulumCommand = new RelayCommand(() =>
+                           {
+                               LW1_PendulumViewModel viewModel = new LW1_PendulumViewModel(dialogService);
+                               dialogService.ShowDialog(viewModel);
+                           }
+                       ));
+            }
+
+        }
         #endregion
 
         public event Action Closed;
