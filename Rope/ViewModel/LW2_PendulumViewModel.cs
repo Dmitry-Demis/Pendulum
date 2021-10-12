@@ -32,13 +32,6 @@ namespace Rope.ViewModel
             get => _c2;
             set => SetProperty(ref _c2, value);
         }
-        private double _c3 = 7;
-
-        public double C3
-        {
-            get => _c3;
-            set => SetProperty(ref _c3, value);
-        }
         private double _m1 = 3;
 
         public double M1
@@ -114,12 +107,12 @@ namespace Rope.ViewModel
             X1 =  40;
             X2 = 2*X1;
             X3 = 3*X1;
-            U1 = 15;
+            U1 = 25;
             U2 = U3 = 5;
             Width1 = X1;
             Width2 = X2;
             Width3 = X3;
-            M1 = 15;
+            M1 = 10;
             M2 = 5;
             M1 = 3;
         }
@@ -224,6 +217,12 @@ namespace Rope.ViewModel
             {
                 return _solution ?? (_solution = new RelayCommand(() =>
                 {
+                    XCurrent1 = X1;
+                    UCurrent1 = U1;
+                    XCurrent2 = X2;
+                    UCurrent2 = U2;
+                    XCurrent3 = X3;
+                    UCurrent3 = U3;
                     MethodAsync();
 
 
@@ -252,15 +251,10 @@ namespace Rope.ViewModel
             {
                 //using (var sw = new StreamWriter(saveFileDialog1.FileName))
                 {
-                    XCurrent1 = X1;
-                    UCurrent1 = U1;
-                    XCurrent2 = X2;
-                    UCurrent2 = U2;
-                    XCurrent3 = X3;
-                    UCurrent3 = U3;
+                  
                     // sw.WriteLine($"X = ;{XCurrent:f3}; U = ;{UCurrent:f3};");
                     double tau = 1e-5;
-                    double tb = 0.0, te = 20.0;
+                    double tb = 0.0, te = 40.0;
                     bool sep = false;
                     double L = 80;
 
@@ -291,12 +285,12 @@ namespace Rope.ViewModel
                             C2 = 0;
                         }
                         tb += tau;
-                        Result1 = 2*XCurrent1;
-                        Width1 = Result1;
-                        Result3 = 2*XCurrent3;
-                        Width3 = Result3;
-                        Result2 =2*XCurrent2;
-                        Width2 =  Result2;
+                        Result1 = XCurrent1;
+                        Width1 = 2 * Result1;
+                        Result3 = XCurrent3;
+                        Width3 = 2 * Result3;
+                        Result2 =XCurrent2;
+                        Width2 = 2 * Result2;
                     }
                 }
 
