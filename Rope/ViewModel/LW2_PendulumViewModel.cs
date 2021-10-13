@@ -12,6 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 using Microsoft.Win32;
+using System.Windows;
 
 namespace Rope.ViewModel
 {
@@ -115,6 +116,21 @@ namespace Rope.ViewModel
             M1 = 10;
             M2 = 5;
             M1 = 3;
+            
+        }
+        private Visibility _v1 = Visibility.Visible; 
+
+        public Visibility V1
+        {
+            get => _v1;
+            set => SetProperty(ref _v1, value);
+        }
+        private Visibility _v2 = Visibility.Visible;
+
+        public Visibility V2
+        {
+            get => _v2;
+            set => SetProperty(ref _v2, value);
         }
 
         private double _xCurrent1;
@@ -278,11 +294,13 @@ namespace Rope.ViewModel
                         if ((Xk[1] - Xk[0]) > K)
                         {
                             C1 = 0;
+                           V1 =  Visibility.Collapsed;
                         }
 
                         if (Xk[2] - Xk[1] > K)
                         {
                             C2 = 0;
+                            V2 = Visibility.Collapsed;
                         }
                         tb += tau;
                         Result1 = XCurrent1;

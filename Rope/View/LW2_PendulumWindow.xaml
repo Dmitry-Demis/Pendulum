@@ -45,6 +45,8 @@
         <!--<Grid x:Name="myBorder" Grid.Column="1">-->
         <Canvas
             Grid.Column="1" x:Name="myCanvas"  VerticalAlignment="Center">
+            <Line X1="{Binding Width1}" X2="{Binding Width2}" Stroke="Yellow" Visibility="{Binding V1}"/>
+            <Line X1="{Binding Width2}" X2="{Binding Width3}" Stroke="Orange" Visibility="{Binding V2}"/>
             <Ellipse
                 Width="40" 
                 Height="{Binding Width, RelativeSource={RelativeSource Mode=Self}}" 
@@ -55,6 +57,7 @@
                     <TranslateTransform X="-20" Y="-20" />
                 </Ellipse.RenderTransform>
             </Ellipse>
+            
             <Ellipse
                 Width="30" 
                 Height="{Binding Width, RelativeSource={RelativeSource Mode=Self}}" 
